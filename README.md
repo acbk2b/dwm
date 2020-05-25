@@ -39,8 +39,9 @@ I have 6 patches added to this build at the moment:
 * [Warp](https://dwm.suckless.org/patches/warp/)
   * Warps mouse to the center of focused window when change focus
     * Works with multiple monitors as well
-* [No Border](https://dwm.suckless.org/patches/noborder/)
-  * Removes border when there is only one window on a given workspace
+* [Actual Fullscreen](https://dwm.suckless.org/patches/actualfullscreen/)
+  * Allows the ability to toggle "actual" fullscreen, i.e. not just toggle monocle layout and the status bar
+  * This one is really only in here for games, as they tend to get a bit carried away with fullscreen
 
 Additionally, I have also modified lines `741-744` so that the title of the current window is not displayed in the status bar
 This also changes the color of the section where the title would have been to the same color as the rest of the bar.
