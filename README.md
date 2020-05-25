@@ -20,7 +20,8 @@ Modify `config.h` to use different programs
 Instructions work for Arch Linux, change the first two steps if needed for your given distro
 
 * Copy .dwmstart.sh to ~/
-* Copy dwm.desktop to 
+* Copy dwm.desktop to `/usr/share/xsessions/`
+
 `# make install`
 
 ### Added Features
