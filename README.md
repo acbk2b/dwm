@@ -6,6 +6,23 @@ Vanilla branch is mirror of vanilla DWM, at this time version 6.2
 
 Custom branch is my own branch including all of the different patches and modifications I have applied
 
+### Installation
+
+#### Depenencies
+All depencies are more or less "soft" dependencies.  
+Modify `config.h` to use different programs
+* dmenu 
+* st
+* pulsemixer
+* passmenu
+* light
+
+Instructions work for Arch Linux, change the first two steps if needed for your given distro
+
+* Copy .dwmstart.sh to ~/
+* Copy dwm.desktop to 
+`# make install`
+
 ### Added Features
 
 I have 6 patches added to this build at the moment:
