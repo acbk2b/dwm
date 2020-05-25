@@ -21,6 +21,8 @@ I have 6 patches added to this build at the moment:
 * [Warp](https://dwm.suckless.org/patches/warp/)
   * Warps mouse to the center of focused window when change focus
     * Works with multiple monitors as well
+* [No Border](https://dwm.suckless.org/patches/noborder/)
+  * Removes border when there is only one window on a given workspace
 
 Additionally, I have also modified lines `741-744` so that the title of the current window is not displayed in the status bar
 This also changes the color of the section where the title would have been to the same color as the rest of the bar.
@@ -32,8 +34,20 @@ I also added the ability to change between workspaces using the numberpad, as we
 
 Mod Key: Super Key (Mod 4)
 
-| Key             | Action              |
-| :-------------- | :------------------ |
-| MOD + Shift + q | Kill focused window |
-| MOD + Shift + e | Exit DWM            |
-| MOD + Shift + e | Exit DWM            |
+| Key               | Action              |
+| :---------------- | :------------------ |
+| `MOD + Shift + q` | Kill focused window |
+| `MOD + Shift + e` | Exit DWM            |
+| `MOD + p`         | passmenu            |
+| `MOD + o`         | "dropdown" terminal |
+| `MOD + i`         | pulsemixer          |
+| `MOD + d`         | dmenu run           |
+| `MOD + Enter`     | Launch terminal     |
+| `MOD + b`         | toggle bar          |
+| `MOD + {shift} + k/j` | focus/move window up/down stack |
+| `MOD +  ,/.`      | increase window size left/right |
+| `MOD +  -/+`      | inc/decrease window gaps |
+| `MOD +  =`        | set gaps to 0       |
+| `MOD +  t`        | tiling layout       |
+| `MOD +  f`        | floating layout     |
+| `MOD +  m`        | monocle layout      |
