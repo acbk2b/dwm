@@ -20,7 +20,7 @@
  * noborder
  * center
  * statusallmons
-* /
+*/
 
 
 /* appearance */
