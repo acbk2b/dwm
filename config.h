@@ -98,7 +98,6 @@ static Key keys[] = {
   { 0,                            XF86XK_MonBrightnessDown,   spawn,         SHCMD( "light -U 5%" ) },
   { MODKEY,                       XK_p,                       spawn,         SHCMD( "passmenu" ) },
   { MODKEY,                       XK_o,                       spawn,         SHCMD( "st -c 'st-dropdown' -e tmux" ) },
-  // { MODKEY,                       XK_i,                       spawn,         SHCMD( "pavucontrol" ) },
   { MODKEY,                       XK_i,                       spawn,         SHCMD( "st -c 'st-dropdown' -e pulsemixer" ) },
   { MODKEY,                       XK_r,                       spawn,         SHCMD( "~/scripts/$(ls ~/scripts | dmenu -i)" ) },
   { MODKEY,                       XK_d,                       spawn,          {.v = dmenucmd } },
