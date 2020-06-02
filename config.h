@@ -10,7 +10,7 @@
  *
  * Only use patches that add necessary functionality
  * Patches that are added are almost all small in changes
- * to source code, with the exception of a few (fakefullscreen/center)
+ * to source code, with the exception of a center
  *
  * Currently Installed Patches:
  *
