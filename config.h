@@ -10,7 +10,7 @@
  *
  * Only use patches that add necessary functionality
  * Patches that are added are almost all small in changes
- * to source code, with the exception of a center
+ * to source code, with the exception of a few (fakefullscreen/center)
  *
  * Currently Installed Patches:
  *
@@ -36,12 +36,20 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
+static const unsigned int baralpha = 0x00;
+static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
+static const unsigned int alphas[][3]      = {
+  /*               fg      bg        border     */
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+};
+
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -88,6 +96,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL};
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
+static const char scratchpadname[] = "st-dropdown";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+ 
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -97,7 +108,7 @@ static Key keys[] = {
   { 0,                            XF86XK_MonBrightnessUp,     spawn,         SHCMD( "light -A 5%" )},
   { 0,                            XF86XK_MonBrightnessDown,   spawn,         SHCMD( "light -U 5%" ) },
   { MODKEY,                       XK_p,                       spawn,         SHCMD( "passmenu" ) },
-  { MODKEY,                       XK_o,                       spawn,         SHCMD( "st -c 'st-dropdown' -e tmux" ) },
+  { MODKEY,                       XK_o,                       togglescratch,  {.v = scratchpadcmd } },
   { MODKEY,                       XK_i,                       spawn,         SHCMD( "st -c 'st-dropdown' -e pulsemixer" ) },
   { MODKEY,                       XK_r,                       spawn,         SHCMD( "~/scripts/$(ls ~/scripts | dmenu -i)" ) },
   { MODKEY,                       XK_d,                       spawn,          {.v = dmenucmd } },
