@@ -36,12 +36,20 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
+static const char col_green[]       = "#00FF9C";
+static const char col_purple[]      = "#2E2837";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_green, col_purple, col_green },
+	[SchemeSel]  = { col_purple, col_green, col_green },
 };
+
+// static const char *colors[][3]      = {
+// 	/*               fg         bg         border   */
+// 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+// 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+// };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -51,11 +59,10 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isCentered  isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            0,          1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,          0,           -1 },
-	{ "Pavucontrol",  NULL,   NULL,       0,            1,          1,           -1 },
-	{ "st-dropdown",  NULL,   NULL,       0,            1,          1,           -1 },
+	/* class          instance    title       tags mask     isCentered  isfloating   monitor */
+	{ "Pavucontrol",  NULL,       NULL,       0,            1,          1,           -1 },
+	{ "st-dropdown",  NULL,       NULL,       0,            1,          1,           -1 },
+	{ "Steam",        NULL,       NULL,       0,            1,          1,           -1 },
 };
 
 /* layout(s) */
