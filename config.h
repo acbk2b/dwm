@@ -41,7 +41,7 @@ static const char col_purple[]      = "#2E2837";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_green, col_purple, col_green },
+	[SchemeNorm] = { col_green, col_purple, col_purple },
 	[SchemeSel]  = { col_purple, col_green, col_green },
 };
 
@@ -106,6 +106,7 @@ static Key keys[] = {
   { MODKEY,                       XK_p,                       spawn,         SHCMD( "passmenu" ) },
   { MODKEY,                       XK_o,                       spawn,         SHCMD( "st -c 'st-dropdown' -e tmux" ) },
   { MODKEY,                       XK_i,                       spawn,         SHCMD( "st -c 'st-dropdown' -e pulsemixer" ) },
+  { MODKEY,                       XK_u,                       spawn,         SHCMD( "st -c 'st-dropdown' -e python" ) },
   { MODKEY,                       XK_r,                       spawn,         SHCMD( "~/scripts/$(ls ~/scripts | dmenu -i)" ) },
   { MODKEY,                       XK_d,                       spawn,          {.v = dmenucmd } },
   { MODKEY,                       XK_Return,                  spawn,          {.v = termcmd } },
@@ -114,8 +115,8 @@ static Key keys[] = {
   { MODKEY,                       XK_k,                       focusstack,     {.i = -1 } },
   { MODKEY|ShiftMask,             XK_j,                       movestack,      {.i = +1 } },
   { MODKEY|ShiftMask,             XK_k,                       movestack,      {.i = -1 } },
-	{ MODKEY,                       XK_y,                       incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_u,                       incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_v,                       incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_b,                       incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_comma,                   setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_period,                  setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
