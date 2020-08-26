@@ -32,16 +32,11 @@ I have 6 patches added to this build at the moment:
   * Allows windows to be centered when spawned
 * [Full Gaps](https://dwm.suckless.org/patches/fullgaps/)
   * Gaps between windows
-* [Movestack](https://dwm.suckless.org/patches/movestack/)
-  * Allows moving windows up and down in the stack
 * [Statusallmons](https://dwm.suckless.org/patches/statusallmons/)
   * Allows status bar to be drawn and updated on all monitors
 * [Warp](https://dwm.suckless.org/patches/warp/)
   * Warps mouse to the center of focused window when change focus
     * Works with multiple monitors as well
-* [Actual Fullscreen](https://dwm.suckless.org/patches/actualfullscreen/)
-  * Allows the ability to toggle "actual" fullscreen, i.e. not just toggle monocle layout and the status bar
-  * This one is really only in here for games, as they tend to get a bit carried away with fullscreen
 
 Additionally, I have also modified lines `741-744` so that the title of the current window is not displayed in the status bar
 This also changes the color of the section where the title would have been to the same color as the rest of the bar.
