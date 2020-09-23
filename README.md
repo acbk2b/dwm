@@ -26,7 +26,7 @@ Instructions work for Arch Linux, change the first two steps if needed for your 
 
 ### Added Features
 
-I have 6 patches added to this build at the moment:
+I have 4 patches added to this build at the moment:
 
 * [Center](https://dwm.suckless.org/patches/center/)
   * Allows windows to be centered when spawned
