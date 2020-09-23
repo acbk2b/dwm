@@ -1,5 +1,7 @@
 # My Custom Build of Suckless's DWM
 
+Also included are files for st, dmenu, and dwmblocks.
+
 ### Branches
 
 Vanilla branch is mirror of vanilla DWM, at this time version 6.2
