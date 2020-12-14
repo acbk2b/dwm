@@ -62,6 +62,7 @@ static const Rule rules[] = {
 	{ "Pavucontrol",  NULL,       NULL,       0,            1,          1,           -1 },
 	{ "st-dropdown",  NULL,       NULL,       0,            1,          1,           -1 },
 	{ "weka-gui-GUIChoose",        NULL,       NULL,       0,            1,          1,           -1 },
+	{ "Ghidra",        NULL,       NULL,       0,            1,          1,           -1 },
 };
 
 /* layout(s) */
@@ -113,8 +114,8 @@ static Key keys[] = {
   { MODKEY,                       XK_b,                       togglebar,      {0} },
   { MODKEY,                       XK_j,                       focusstack,     {.i = +1 } },
   { MODKEY,                       XK_k,                       focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_v,                       incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_b,                       incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_n,                       incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_v,                       incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_comma,                   setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_period,                  setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
