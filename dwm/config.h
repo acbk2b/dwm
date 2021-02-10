@@ -63,7 +63,7 @@ static const Rule rules[] = {
 	 */
 	/* class          instance    title       tags mask     isCentered  isfloating   monitor */
 	{ "Pavucontrol",  NULL,       NULL,       0,            1,          1,           -1 },
-	{ "dropdown-term",  NULL,       NULL,       0,            1,          1,           -1 },
+	{ "Alacritty",    "dropdown-term", NULL,  0,            1,          1,           -1 },
 	{ "weka-gui-GUIChoose",        NULL,       NULL,       0,            1,          1,           -1 },
 	{ "Ghidra",        NULL,       NULL,       0,            1,          1,           -1 },
 };
