@@ -14,11 +14,10 @@
  * Currently Installed Patches:
  *
  * fullgaps
- * movestack
  * warp
- * noborder
  * center
  * statusallmons
+ * actualfullscreen
 */
 
 
@@ -44,6 +43,8 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_purple, col_green, col_green },
 };
 
+/* Default Colors */
+
 // static const char *colors[][3]      = {
 // 	/*               fg         bg         border   */
 // 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -60,7 +61,7 @@ static const Rule rules[] = {
 	 */
 	/* class          instance    title       tags mask     isCentered  isfloating   monitor */
 	{ "Pavucontrol",  NULL,       NULL,       0,            1,          1,           -1 },
-	{ "st-dropdown",  NULL,       NULL,       0,            1,          1,           -1 },
+	{ "dropdown-term",  NULL,       NULL,       0,            1,          1,           -1 },
 	{ "weka-gui-GUIChoose",        NULL,       NULL,       0,            1,          1,           -1 },
 	{ "Ghidra",        NULL,       NULL,       0,            1,          1,           -1 },
 };
@@ -94,7 +95,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL};
-static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -104,11 +105,14 @@ static Key keys[] = {
   { 0,                            XF86XK_MonBrightnessUp,     spawn,         SHCMD( "light -A 5%" )},
   { 0,                            XF86XK_MonBrightnessDown,   spawn,         SHCMD( "light -U 5%" ) },
   { MODKEY,                       XK_p,                       spawn,         SHCMD( "passmenu" ) },
-  { MODKEY,                       XK_o,                       spawn,         SHCMD( "st -c 'st-dropdown' -e tmux" ) },
-  { MODKEY,                       XK_i,                       spawn,         SHCMD( "st -c 'st-dropdown' -e pulsemixer" ) },
-  { MODKEY,                       XK_u,                       spawn,         SHCMD( "st -c 'st-dropdown' -e python" ) },
-  { MODKEY,                       XK_r,                       spawn,         SHCMD( "~/scripts/$(ls ~/scripts | dmenu -i)" ) },
+  { MODKEY,                       XK_i,                       spawn,         SHCMD( "alacritty --class 'dropdown-term' -e pulsemixer" ) },
+  { MODKEY,                       XK_u,                       spawn,         SHCMD( "alacritty --class 'dropdown-term' -e python" ) },
+  { MODKEY,                       XK_r,                       spawn,         SHCMD( "~/scripts/runscripts" ) },
   { MODKEY|ShiftMask,             XK_x,                       spawn,         SHCMD( "dm-tool lock" ) },
+  { MODKEY|ShiftMask,             XK_s,                       spawn,         SHCMD( "flameshot gui" ) },
+  { MODKEY,                       XK_w,                       spawn,         SHCMD( "firefox" ) },
+  { MODKEY,                       XK_o,                       spawn,         SHCMD( "picom" ) },
+  { MODKEY|ShiftMask,             XK_o,                       spawn,         SHCMD( "pkill picom" ) },
   { MODKEY,                       XK_d,                       spawn,          {.v = dmenucmd } },
   { MODKEY,                       XK_Return,                  spawn,          {.v = termcmd } },
   { MODKEY,                       XK_b,                       togglebar,      {0} },
@@ -123,9 +127,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	{ MODKEY|ShiftMask,             XK_Return,                  zoom,           {0} },
 	{ MODKEY,                       XK_Tab,                     view,           {0} },
-	{ MODKEY|ShiftMask,             XK_q,                       killclient,     {0} },
+	{ MODKEY|ShiftMask,             XK_c,                       killclient,     {0} },
 	{ MODKEY,                       XK_t,                       setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,                       setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask,             XK_f,                       togglefullscr,  {0} },
 	{ MODKEY,                       XK_m,                       setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,                   setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,                   togglefloating, {0} },
@@ -136,7 +141,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_h,                       tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_l,                       tagmon,         {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_e,                       quit,           {0} },
-  { MODKEY|ShiftMask,             XK_s,                       spawn,          SHCMD( "flameshot gui" ) },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
