@@ -1,8 +1,12 @@
 //Modify this file to change what commands output to your statusbar, and recompile using the make command.
+
+#define BATTERY 1
+
 static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
+#if BATTERY
   {"", "if [[ $(cat /sys/class/power_supply/BAT0/status ) == 'Charging' ]]; then echo -n '^'; else echo -n 'V '; fi; cat /sys/class/power_supply/BAT0/capacity", 30, 0},
-	      //
+#endif
 	{"", "free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed s/i//g",	30,		0},
 
 	{"", "amixer sget Master | awk '/Front Right:/{print $5}' | grep -o -E [[:digit:]]+\%",0,11},
