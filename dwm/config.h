@@ -1,7 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
 #include <X11/XF86keysym.h>
-#include "extra-functions.c"
 
 /* Build changes from original 
  *
@@ -20,6 +19,8 @@
  * center
  * statusallmons
  * actualfullscreen
+ * Attach bottom
+ * Fibonacci/Dwindle layouts (with gaps!)
 */
 
 
@@ -74,12 +75,14 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals; 
                                         disable to prevent unwanted gaps between edges 
                                         and terminals */
-
+#include "fibonacci.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
+  { "[@]",      spiral },
+	{ "[=]",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+ 	{ "[\\]",      dwindle },
 };
 
 /* key definitions */
@@ -99,22 +102,25 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", NULL};
 static const char *termcmd[]  = { "alacritty", NULL };
 
+#include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-  { 0,                            XF86XK_AudioRaiseVolume,    spawn,         SHCMD( "pactl set-sink-volume 0 +5%; pkill -RTMIN+11 dwmblocks" ) },
-  { 0,                            XF86XK_AudioLowerVolume,    spawn,         SHCMD( "pactl set-sink-volume 0 -5%; pkill -RTMIN+11 dwmblocks" ) },
-  { 0,                            XF86XK_AudioMute,           spawn,         SHCMD( "pactl set-sink-mute 0 toggle" ) },
-  { 0,                            XF86XK_MonBrightnessUp,     spawn,         SHCMD( "light -A 5%" )},
-  { 0,                            XF86XK_MonBrightnessDown,   spawn,         SHCMD( "light -U 5%" ) },
-  { MODKEY,                       XK_p,                       spawn,         SHCMD( "passmenu" ) },
-  { MODKEY,                       XK_i,                       spawn,         SHCMD( "alacritty --class 'dropdown-term' -e pulsemixer" ) },
-  { MODKEY,                       XK_u,                       spawn,         SHCMD( "alacritty --class 'dropdown-term' -e python" ) },
-  { MODKEY,                       XK_r,                       spawn,         SHCMD( "~/scripts/runscripts" ) },
-  { MODKEY|ShiftMask,             XK_x,                       spawn,         SHCMD( "dm-tool lock" ) },
-  { MODKEY|ShiftMask,             XK_s,                       spawn,         SHCMD( "flameshot gui" ) },
-  { MODKEY,                       XK_w,                       spawn,         SHCMD( "firefox" ) },
-  { MODKEY,                       XK_o,                       spawn,         SHCMD( "picom" ) },
-  { MODKEY|ShiftMask,             XK_o,                       spawn,         SHCMD( "pkill picom" ) },
+  { 0,                            XF86XK_AudioRaiseVolume,    spawn,          SHCMD( "pactl set-sink-volume 0 +5%; pkill -RTMIN+11 dwmblocks" ) },
+  { 0,                            XF86XK_AudioLowerVolume,    spawn,          SHCMD( "pactl set-sink-volume 0 -5%; pkill -RTMIN+11 dwmblocks" ) },
+  { 0,                            XF86XK_AudioMute,           spawn,          SHCMD( "pactl set-sink-mute 0 toggle" ) },
+  { 0,                            XF86XK_MonBrightnessUp,     spawn,          SHCMD( "light -A 5%" )},
+  { 0,                            XF86XK_MonBrightnessDown,   spawn,          SHCMD( "light -U 5%" ) },
+  { MODKEY,                       XK_p,                       spawn,          SHCMD( "passmenu" ) },
+  // { MODKEY,                       XK_r,                       spawn,          SHCMD( "~/scripts/runscripts" ) },
+  { MODKEY|ShiftMask,             XK_x,                       spawn,          SHCMD( "dm-tool lock" ) },
+  { MODKEY,                       XK_i,                       spawn,          SHCMD( "alacritty --class 'dropdown-term' -e pulsemixer" ) },
+  { MODKEY,                       XK_u,                       spawn,          SHCMD( "alacritty --class 'dropdown-term' -e python" ) },
+  { MODKEY,                       XK_s,                       spawn,          SHCMD( "spotify" ) },
+  { MODKEY|ShiftMask,             XK_s,                       spawn,          SHCMD( "flameshot gui" ) },
+  { MODKEY,                       XK_w,                       spawn,          SHCMD( "firefox" ) },
+  { MODKEY,                       XK_a,                       spawn,          SHCMD( "/home/alex/.joplin/Joplin.AppImage" ) },
+  { MODKEY,                       XK_o,                       spawn,          SHCMD( "picom" ) },
+  { MODKEY|ShiftMask,             XK_o,                       spawn,          SHCMD( "pkill picom" ) },
   { MODKEY,                       XK_d,                       spawn,          {.v = dmenucmd } },
   { MODKEY,                       XK_Return,                  spawn,          {.v = termcmd } },
   { MODKEY,                       XK_b,                       togglebar,      {0} },
@@ -132,10 +138,12 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return,                  zoom,           {0} },
 	{ MODKEY,                       XK_Tab,                     view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,                       killclient,     {0} },
-	{ MODKEY,                       XK_t,                       setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,                       setlayout,      {.v = &layouts[1]} },
+  { MODKEY,                       XK_r,                       setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,                       XK_t,                       setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_f,                       setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_m,                       setlayout,      {.v = &layouts[3]} },  
+	{ MODKEY|ShiftMask,             XK_r,                       setlayout,      {.v = &layouts[4]} },
 	{ MODKEY|ShiftMask,             XK_f,                       togglefullscr,  {0} },
-	{ MODKEY,                       XK_m,                       setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,                   setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,                   togglefloating, {0} },
 	{ MODKEY,                       XK_0,                       view,           {.ui = ~0 } },
