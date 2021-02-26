@@ -7,11 +7,7 @@
  * Removed window name from titlebar
     * drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
     * Line 742 in dwm.c as of v6.2
- *
- * Only use patches that add necessary functionality
- * Patches that are added are almost all small in changes
- * to source code, with the exception of a center
- *
+ * 
  * Currently Installed Patches:
  *
  * fullgaps
@@ -19,8 +15,9 @@
  * center
  * statusallmons
  * actualfullscreen
- * Attach bottom
+ * attachbottom
  * Fibonacci/Dwindle layouts (with gaps!)
+ * cyclelayouts
 */
 
 
@@ -45,14 +42,6 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { col_green, col_purple, col_purple },
 	[SchemeSel]  = { col_purple, col_green, col_green },
 };
-
-/* Default Colors */
-
-// static const char *colors[][3]      = {
-// 	/*               fg         bg         border   */
-// 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-// 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-// };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -140,11 +129,13 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_c,                       killclient,     {0} },
 	{ MODKEY,                       XK_Tab,                     cyclelayout,    {.i = +1 } },
 	// { MODKEY,                       XK_Tab,                     view,           {0} },
-  // { MODKEY,                       XK_t,                       setlayout,      {.v = &layouts[0]} },
-	// { MODKEY|ControlMask,           XK_t,                       setlayout,      {.v = &layouts[1]} },
-	// { MODKEY,                       XK_f,                       setlayout,      {.v = &layouts[2]} },
-	// { MODKEY,                       XK_m,                       setlayout,      {.v = &layouts[3]} },  
-	// { MODKEY|ShiftMask,             XK_t,                       setlayout,      {.v = &layouts[4]} },
+  /* Original Layout Key functionality
+  { MODKEY,                       XK_t,                       setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ControlMask,           XK_t,                       setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_f,                       setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_m,                       setlayout,      {.v = &layouts[3]} },  
+	{ MODKEY|ShiftMask,             XK_t,                       setlayout,      {.v = &layouts[4]} },
+  */ 
 	{ MODKEY,                       XK_f,                       togglefullscr,  {0} },
 	{ MODKEY,                       XK_space,                   setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,                   togglefloating, {0} },
