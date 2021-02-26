@@ -79,10 +79,10 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 static const Layout layouts[] = {
 	/* symbol     arrange function */
   { "[@]",      spiral },
-	{ "[=]",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	// { "[=]",      tile },    /* first entry is default */
+	// { "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
- 	{ "[\\]",      dwindle },
+ 	// { "[\\]",      dwindle },
 };
 
 /* key definitions */
@@ -103,6 +103,7 @@ static const char *dmenucmd[] = { "dmenu_run", NULL};
 static const char *termcmd[]  = { "alacritty", NULL };
 
 #include "movestack.c"
+#include "cyclelayout.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
   { 0,                            XF86XK_AudioRaiseVolume,    spawn,          SHCMD( "pactl set-sink-volume 0 +5%; pkill -RTMIN+11 dwmblocks" ) },
@@ -111,7 +112,7 @@ static Key keys[] = {
   { 0,                            XF86XK_MonBrightnessUp,     spawn,          SHCMD( "light -A 5%" )},
   { 0,                            XF86XK_MonBrightnessDown,   spawn,          SHCMD( "light -U 5%" ) },
   { MODKEY,                       XK_p,                       spawn,          SHCMD( "passmenu" ) },
-  // { MODKEY,                       XK_r,                       spawn,          SHCMD( "~/scripts/runscripts" ) },
+  { MODKEY,                       XK_r,                       spawn,          SHCMD( "/home/alex/scripts/runscripts" ) },
   { MODKEY|ShiftMask,             XK_x,                       spawn,          SHCMD( "dm-tool lock" ) },
   { MODKEY,                       XK_i,                       spawn,          SHCMD( "alacritty --class 'dropdown-term' -e pulsemixer" ) },
   { MODKEY,                       XK_u,                       spawn,          SHCMD( "alacritty --class 'dropdown-term' -e python" ) },
@@ -121,29 +122,30 @@ static Key keys[] = {
   { MODKEY,                       XK_a,                       spawn,          SHCMD( "/home/alex/.joplin/Joplin.AppImage" ) },
   { MODKEY,                       XK_o,                       spawn,          SHCMD( "picom" ) },
   { MODKEY|ShiftMask,             XK_o,                       spawn,          SHCMD( "pkill picom" ) },
-  { MODKEY,                       XK_d,                       spawn,          {.v = dmenucmd } },
-  { MODKEY,                       XK_Return,                  spawn,          {.v = termcmd } },
+  { MODKEY,                       XK_d,                       spawn,          { .v = dmenucmd } },
+  { MODKEY,                       XK_Return,                  spawn,          { .v = termcmd } },
   { MODKEY,                       XK_b,                       togglebar,      {0} },
   { MODKEY,                       XK_j,                       focusstack,     {.i = +1 } },
   { MODKEY,                       XK_k,                       focusstack,     {.i = -1 } },
-  { MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
+  { MODKEY|ShiftMask,             XK_j,      movestack,       {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      movestack,       {.i = -1 } },
 	{ MODKEY,                       XK_n,                       incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_v,                       incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_comma,                   setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_period,                  setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	{ MODKEY,                       XK_minus,  setgaps,         {.i = -1 } },
+	{ MODKEY,                       XK_equal,  setgaps,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_equal,  setgaps,         {.i = 0  } },
 	{ MODKEY|ShiftMask,             XK_Return,                  zoom,           {0} },
-	{ MODKEY,                       XK_Tab,                     view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,                       killclient,     {0} },
-  { MODKEY,                       XK_r,                       setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_t,                       setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_f,                       setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_m,                       setlayout,      {.v = &layouts[3]} },  
-	{ MODKEY|ShiftMask,             XK_r,                       setlayout,      {.v = &layouts[4]} },
-	{ MODKEY|ShiftMask,             XK_f,                       togglefullscr,  {0} },
+	{ MODKEY,                       XK_Tab,                     cyclelayout,    {.i = +1 } },
+	// { MODKEY,                       XK_Tab,                     view,           {0} },
+  // { MODKEY,                       XK_t,                       setlayout,      {.v = &layouts[0]} },
+	// { MODKEY|ControlMask,           XK_t,                       setlayout,      {.v = &layouts[1]} },
+	// { MODKEY,                       XK_f,                       setlayout,      {.v = &layouts[2]} },
+	// { MODKEY,                       XK_m,                       setlayout,      {.v = &layouts[3]} },  
+	// { MODKEY|ShiftMask,             XK_t,                       setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_f,                       togglefullscr,  {0} },
 	{ MODKEY,                       XK_space,                   setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,                   togglefloating, {0} },
 	{ MODKEY,                       XK_0,                       view,           {.ui = ~0 } },
@@ -152,7 +154,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,                       focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_h,                       tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_l,                       tagmon,         {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_e,                       quit,           {0} },
+  { MODKEY|ShiftMask,             XK_e,                       spawn,          SHCMD("pkill .dwmstart.sh") },
+	{ MODKEY|ShiftMask,             XK_r,                       quit,           {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
