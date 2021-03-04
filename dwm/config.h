@@ -108,7 +108,7 @@ static Key keys[] = {
   { MODKEY,                       XK_u,                       spawn,          SHCMD( "alacritty --class 'dropdown-term' -e python" ) },
   { MODKEY,                       XK_s,                       spawn,          SHCMD( "spotify" ) },
   { MODKEY|ShiftMask,             XK_s,                       spawn,          SHCMD( "flameshot gui" ) },
-  { MODKEY,                       XK_w,                       spawn,          SHCMD( "firefox" ) },
+  { MODKEY,                       XK_w,                       spawn,          SHCMD( "qutebrowser" ) },
   { MODKEY,                       XK_a,                       spawn,          SHCMD( "/home/alex/.joplin/Joplin.AppImage" ) },
   { MODKEY,                       XK_o,                       spawn,          SHCMD( "picom" ) },
   { MODKEY|ShiftMask,             XK_o,                       spawn,          SHCMD( "pkill picom" ) },
