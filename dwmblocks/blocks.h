@@ -6,7 +6,7 @@ static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 
   // Packages available for update
-	{"", "echo \"Pkgs: $(yay -Qu | wc -l)\"",	7200,		0},
+	{"", "echo \"Pkgs: $(yay -Qu | wc -l)\"",	3600,		0},
 
   // Battery
 #if BATTERY
