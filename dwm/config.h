@@ -25,6 +25,7 @@
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 8;        /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
@@ -51,11 +52,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class          instance    title       tags mask     isCentered  isfloating   monitor */
-	{ "Pavucontrol",  NULL,       NULL,       0,            1,          1,           -1 },
-	{ "Alacritty",    "dropdown-term", NULL,  0,            1,          1,           -1 },
-	{ "weka-gui-GUIChoose",        NULL,       NULL,       0,            1,          1,           -1 },
-	{ "Ghidra",        NULL,       NULL,       0,            1,          1,           -1 },
+	/* class          instance    title       tags mask     isCentered  isfloating   isterminal noswallow monitor */
+	{ "Pavucontrol",  NULL,       NULL,       0,            1,          1,           0,         0,        -1 },
+	{ "Alacritty",    "dropdown-term", NULL,  0,            1,          1,           1,         0,        -1 },
+	{ "weka-gui-GUIChoose", NULL,  NULL,      0,            1,          0,           0,         0,        -1 },
+	{ "Ghidra",        NULL,       NULL,      0,            1,          1,           0,         0,        -1 },
+	{ "Alacritty",     NULL,       NULL,      0,            1,          0,           1,         0,        -1 },
 };
 
 /* layout(s) */
@@ -103,7 +105,7 @@ static Key keys[] = {
   { 0,                            XF86XK_MonBrightnessDown,   spawn,          SHCMD( "light -U 5%" ) },
   { MODKEY,                       XK_p,                       spawn,          SHCMD( "passmenu" ) },
   { MODKEY,                       XK_r,                       spawn,          SHCMD( "/home/alex/scripts/runscripts" ) },
-  { MODKEY|ShiftMask,             XK_x,                       spawn,          SHCMD( "dm-tool lock" ) },
+  // { MODKEY|ShiftMask,             XK_x,                       spawn,          SHCMD( "dm-tool lock" ) },
   { MODKEY,                       XK_i,                       spawn,          SHCMD( "alacritty --class 'dropdown-term' -e pulsemixer" ) },
   { MODKEY,                       XK_u,                       spawn,          SHCMD( "alacritty --class 'dropdown-term' -e python" ) },
   { MODKEY,                       XK_s,                       spawn,          SHCMD( "spotify" ) },
