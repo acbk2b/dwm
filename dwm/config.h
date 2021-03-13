@@ -25,7 +25,6 @@
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 8;        /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
@@ -52,12 +51,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class          instance    title       tags mask     isCentered  isfloating   isterminal noswallow monitor */
-	{ "Pavucontrol",  NULL,       NULL,       0,            1,          1,           0,         0,        -1 },
-	{ "Alacritty",    "dropdown-term", NULL,  0,            1,          1,           1,         0,        -1 },
-	{ "weka-gui-GUIChoose", NULL,  NULL,      0,            1,          0,           0,         0,        -1 },
-	{ "Ghidra",        NULL,       NULL,      0,            1,          1,           0,         0,        -1 },
-	{ "Alacritty",     NULL,       NULL,      0,            1,          0,           1,         0,        -1 },
+	/* class          instance    title       tags mask     isCentered  isfloating monitor */
+	{ "Pavucontrol",  NULL,       NULL,       0,            1,          1,         -1 },
+	{ "Alacritty",    "dropdown-term", NULL,  0,            1,          1,         -1 },
+	{ "weka-gui-GUIChoose", NULL,  NULL,      0,            1,          0,         -1 },
+	{ "Ghidra",        NULL,       NULL,      0,            1,          1,         -1 },
+	{ "Alacritty",     NULL,       NULL,      0,            1,          0,         -1 },
 };
 
 /* layout(s) */
@@ -148,7 +147,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,                       focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_h,                       tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_l,                       tagmon,         {.i = +1 } },
-  { MODKEY|ShiftMask,             XK_e,                       spawn,          SHCMD("pkill .dwmstart.sh") },
+  { MODKEY|ShiftMask,             XK_e,                       spawn,          SHCMD("pkill dwmstart") },
 	{ MODKEY|ShiftMask,             XK_r,                       quit,           {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
