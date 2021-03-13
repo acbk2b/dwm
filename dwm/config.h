@@ -56,7 +56,6 @@ static const Rule rules[] = {
 	{ "Alacritty",    "dropdown-term", NULL,  0,            1,          1,         -1 },
 	{ "weka-gui-GUIChoose", NULL,  NULL,      0,            1,          0,         -1 },
 	{ "Ghidra",        NULL,       NULL,      0,            1,          1,         -1 },
-	{ "Alacritty",     NULL,       NULL,      0,            1,          0,         -1 },
 };
 
 /* layout(s) */
