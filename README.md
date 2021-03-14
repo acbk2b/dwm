@@ -38,7 +38,7 @@ I have 9 patches added to this build at the moment:
   * Allows cycling of layouts
   * I use this instead of having keys for each layout as I basically just use monocole and tile, so I just want to use tab to go back and forth
 * [Fibonacci]()
-  * I use this instead of the normal tile, I feel that the normal tile becomes less useful after 3 windows in the stack, as they tend to get squashed
+  * I use the `Dwindle` layout form this patch instead of the normal tile, I feel that the normal tile becomes less useful after 3 windows in the stack, as they tend to get squashed
   * This layout will split windows more sensibly instead of just squashing them in the stack
 * [Full Gaps](https://dwm.suckless.org/patches/fullgaps/)
   * Gaps between windows
