@@ -6,24 +6,24 @@ static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 
   // Packages available for update
-	{"", "packages", 3600, 0},
+	{"", "status-packages", 3600, 0},
 
   // Battery
 #if BATTERY
-  {"", "battery",  30, 0},
+  {"", "status-battery",  30, 0},
 #endif
 
   // Ram usage
-	{"", "ram",	     30, 0},
+	{"", "status-ram",	     30, 0},
 
   // Volume
-	{"", "volume",   30, 11},
+	{"", "status-volume",   30, 11},
 
   // CPU Temp	
-	{"", "cputemp",  30,	0},
+	{"", "status-cputemp",  30,	0},
 
   // Date and clock
-	{"", "datetime", 1,	0},
+	{"", "status-datetime", 1,	0},
 };
 
 //sets delimeter between status commands. NULL character ('\0') means no delimeter.
