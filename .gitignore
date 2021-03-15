@@ -3,4 +3,4 @@
 *.o
 dwm/dwm
 dwm/patches/*
-dwmblocks
+dwmblocks/dwmblocks
