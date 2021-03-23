@@ -1,6 +1,8 @@
 *.orig
 *.rej
 *.o
+*/patches/
 dwm/dwm
-dwm/patches/*
 dwmblocks/dwmblocks
+dmenu/dmenu
+dmenu/stest
