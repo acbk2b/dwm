@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=dwm
 Comment=start dwm script
-Exec=~/.local/bin/dwmstart
+Exec=dwmstart
 Type=Application
 Keywords=tiling;wm;windowmanager;window;manager;

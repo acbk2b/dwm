@@ -66,6 +66,7 @@ static const char *termcmd[]  = { "st", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+    /* dwm keybinds */
     { MODKEY,                       XK_d,                       spawn,          { .v = dmenucmd } },
     { MODKEY,                       XK_Return,                  spawn,          { .v = termcmd } },
     { MODKEY,                       XK_b,                       togglebar,      {0} },
@@ -85,7 +86,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_l,                       focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_h,                       tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_l,                       tagmon,         {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_e,                       quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_r,                       quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_e,                       spawn,          SHCMD("pkill dwm") },
+    /* program shortcuts */
+    /* tag key keybinds */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
