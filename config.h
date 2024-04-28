@@ -33,6 +33,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "st-floating",     NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -92,6 +93,10 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,                       quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_e,                       spawn,          SHCMD("pkill dwm") },
     /* program shortcuts */
+	{ MODKEY,                       XK_w,                       spawn,          SHCMD("brave") },
+	{ MODKEY,                       XK_s,                       spawn,          SHCMD("spotify") },
+	{ MODKEY,                       XK_i,                       spawn,          SHCMD("st -c 'st-floating' -e pulsemixer") },
+	{ MODKEY|ShiftMask,             XK_s,                       spawn,          SHCMD("flameshot gui") },
     /* tag key keybinds */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
