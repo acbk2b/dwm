@@ -97,6 +97,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_s,                       spawn,          SHCMD("spotify") },
 	{ MODKEY,                       XK_i,                       spawn,          SHCMD("st -c 'st-floating' -e pulsemixer") },
 	{ MODKEY|ShiftMask,             XK_s,                       spawn,          SHCMD("flameshot gui") },
+	{ MODKEY,                       XK_o,                       spawn,          SHCMD("picom") },
+	{ MODKEY|ShiftMask,             XK_o,                       spawn,          SHCMD("pkill picom") },
     /* tag key keybinds */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
