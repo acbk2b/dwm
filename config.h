@@ -100,6 +100,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_o,                       spawn,          SHCMD("picom") },
 	{ MODKEY|ShiftMask,             XK_o,                       spawn,          SHCMD("pkill picom") },
     /* script shortcuts */
+	{ MODKEY,                       XK_y,                       spawn,          SHCMD("bm -d") },
 	{ MODKEY,                       XK_u,                       spawn,          SHCMD("dmenuunicode") },
     /* tag key keybinds */
 	TAGKEYS(                        XK_1,                      0)
