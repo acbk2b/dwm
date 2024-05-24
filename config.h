@@ -97,7 +97,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,                       quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_e,                       spawn,          SHCMD("pkill dwm") },
     /* program shortcuts */
-	{ MODKEY,                       XK_w,                       spawn,          SHCMD("brave") },
+	{ MODKEY,                       XK_w,                       spawn,          SHCMD("firefox") },
 	{ MODKEY,                       XK_s,                       spawn,          SHCMD("spotify") },
 	{ MODKEY,                       XK_i,                       spawn,          SHCMD("st -c 'st-floating' -e pulsemixer") },
 	{ MODKEY|ShiftMask,             XK_s,                       spawn,          SHCMD("flameshot gui") },
