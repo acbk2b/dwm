@@ -66,7 +66,9 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run" };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 
+#include <X11/XF86keysym.h>
 #include "movestack.c"
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
     /* dwm keybinds */
@@ -97,7 +99,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,                       quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_e,                       spawn,          SHCMD("pkill dwm") },
     /* program shortcuts */
-	{ MODKEY,                       XK_w,                       spawn,          SHCMD("firefox") },
+	{ MODKEY,                       XK_w,                       spawn,          SHCMD("brave") },
 	{ MODKEY,                       XK_s,                       spawn,          SHCMD("spotify") },
 	{ MODKEY,                       XK_i,                       spawn,          SHCMD("st -c 'st-floating' -e pulsemixer") },
 	{ MODKEY|ShiftMask,             XK_s,                       spawn,          SHCMD("flameshot gui") },
@@ -106,6 +108,14 @@ static const Key keys[] = {
     /* script shortcuts */
 	{ MODKEY,                       XK_y,                       spawn,          SHCMD("bm -d") },
 	{ MODKEY,                       XK_u,                       spawn,          SHCMD("dmenuunicode -d") },
+	/* media keys */
+	{ 0,                       		XF86XK_AudioMute,           spawn,          SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") },
+	{ 0,                       		XF86XK_AudioRaiseVolume,    spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+") },
+	{ 0,                       		XF86XK_AudioLowerVolume,    spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-") },
+	{ 0,                       		XF86XK_AudioPrev,    		spawn,          SHCMD("playerctl previous") },
+	{ 0,                       		XF86XK_AudioNext,    		spawn,          SHCMD("playerctl next") },
+	{ 0,                       		XF86XK_AudioPlay,    		spawn,          SHCMD("playerctl play-pause") },
+	{ 0,                       		XF86XK_AudioPause,    		spawn,          SHCMD("playerctl play-pause") },
     /* tag key keybinds */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
